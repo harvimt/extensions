@@ -1,10 +1,8 @@
-Version 3 of Exit Lister by Gavin Lambert begins here.
+Version 2 of Exit Lister by Gavin Lambert begins here.
 
-"Automatic listing of available exits, with a reasonable dose of customization built in."
+"Automatic listing of available exits, with a reasonable dose of customisation built in."
 
-"version 1 by Andre Kosmos" [basic features]
-"version 2 by Gavin Lambert" [more features]
-"version 3 by Mark Harviston <mark.harviston@gmail.com>" [updated for 6L38]
+"based on Exit Lister by Andre Kosmos"
 
 Section 1 - Text
 
@@ -22,7 +20,6 @@ List exits is a truth state that varies. List exits is true.
 Mentioning doors is a truth state that varies. Mentioning doors is true.
 Room memory is a truth state that varies. Room memory is true.
 Darkness memory is a truth state that varies. Darkness memory is true.
-Mentioning unvisited rooms is a truth state that varies. Mentioning unvisited rooms is true.
 
 To mention doors: now mentioning doors is true.
 To don't mention doors: now mentioning doors is false.
@@ -45,13 +42,13 @@ An exit obviousness rule for a room (called place) (this is the darkness hides e
 
 To decide if (way - a direction) is a listable exit:
 	let place be the room way from the location;
-	if place is not a room, decide no;
-	follow the exit obviousness rules for place;
+	if place is not a room then decide no;
+	consider the exit obviousness rules for place;
 	if the rule failed, decide no;
 	let gateway be the room-or-door way from the location;
 	if gateway is a door
 	begin;
-		follow the door obviousness rules for gateway;
+		consider the door obviousness rules for gateway;
 		if the rule failed, decide no;
 	end if;
 	decide yes.
@@ -72,14 +69,14 @@ Last after printing the name of a direction (called way) while listing exits (th
 		let gateway be the room-or-door way from location;
 		if gateway is a door, say " [passing text of gateway] [the gateway]";
 	end if;
-	if place is visited and room memory is true, say " to [the place]".
+	if place is visited and room memory is true then say " to [the place]".
 
 Last after printing the name of a closed door (called gateway) while listing exits (this is the standard door closed text rule):
 	say " [closed text of gateway]".
 
 Section 4 - Player Rules
 
-This is the exits rule: if list exits is true, carry out the listing exits activity.
+This is the exits rule: if list exits is true then carry out the listing exits activity.
 The exits rule is listed last in the carry out looking rules.
 
 Listing exits is an action applying to nothing.
@@ -88,12 +85,12 @@ Carry out listing exits: carry out the listing exits activity.
 
 Turning exits on is an action out of world.
 Understand "exits on" as turning exits on.
-Carry out turning exits on: now list exits is true.
+Carry out turning exits on: change list exits to true.
 Report turning exits on: say "(exits listing is on)".
 
 Turning exits off is an action out of world.
 Understand "exits off" as turning exits off.
-Carry out turning exits off: now list exits is false.
+Carry out turning exits off: change list exits to false.
 Report turning exits off: say "(exits listing is off)".
 
 Section 5 - Secret Doors (for use with Secret Doors by Andrew Owen)
@@ -201,7 +198,7 @@ One final option would be to override all normal handling (including testing for
 
 Chapter: Integration
 
-If the "Secret Doors by Andrew Owen" extension is in use (this is optional), an unrevealed secret door is automatically unobvious as well.
+If the "Secret Doors by Andrew Owen" extension is in use (this is optional), then an unrevealed secret door is automatically unobvious as well.
 
 Chapter: Change Log
 
